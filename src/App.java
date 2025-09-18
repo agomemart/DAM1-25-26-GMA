@@ -9,8 +9,8 @@ public class App {
         System.out.println("Vamos a aprender Java");
         int edad;
         edad = 17;
-        String nombre = null;
-        char letra = 'A';
+        //String nombre = null;
+        //char letra = 'A';
 
         double importe = 123.56; //Comentario una linea
 
