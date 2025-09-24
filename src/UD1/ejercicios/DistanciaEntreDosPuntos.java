@@ -6,13 +6,13 @@ public class DistanciaEntreDosPuntos {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Inserta la cordenada x del punto 1: ");
+        System.out.print("Inserta la coordenada X del punto 1: ");
         int x1 = sc.nextInt();
-        System.out.print("Inserta la cordenada y del punto 1: ");
+        System.out.print("Inserta la coordenada Y del punto 1: ");
         int x2 = sc.nextInt();
-        System.out.print("Inserta la cordenada x del punto 2: ");
+        System.out.print("Inserta la coordenada X del punto 2: ");
         int y1 = sc.nextInt();
-        System.out.print("Inserta la cordenada y del punto 2: ");
+        System.out.print("Inserta la coordenada Y del punto 2: ");
         int y2 = sc.nextInt();
         sc.close();
 
