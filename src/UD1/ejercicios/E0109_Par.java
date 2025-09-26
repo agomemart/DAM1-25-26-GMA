@@ -1,4 +1,4 @@
-package UD1.ejercicios;
+package ud1.ejercicios;
 
 /**
  * @author Adrián Gómez
