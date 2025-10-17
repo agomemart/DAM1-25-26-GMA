@@ -14,6 +14,20 @@ public class EntradasConcierto {
         int entradasVendidas = sc.nextInt();
         sc.close();
 
+        double aforo20 = aforoMaximo * 0.2;
+        double aforo50 = aforoMaximo * 0.5;
+        double recaudadoConcierto = 0;
 
+        if (entradasVendidas <= aforo20) {
+            System.out.println("Concierto cancelado.");
+        } else if (entradasVendidas <= aforo50) {
+            double entradaConDescuento = precioEntrada - precioEntrada * 0.25;
+            recaudadoConcierto = entradasVendidas * entradaConDescuento;
+            System.out.println("Entradas con descuento del 25%");
+            System.out.println("Recaudado: " + recaudadoConcierto);
+        } else {
+            recaudadoConcierto = entradasVendidas * precioEntrada;
+            System.out.println("Recaudado: " + recaudadoConcierto);
+        }
     }
 }
