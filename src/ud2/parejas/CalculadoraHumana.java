@@ -4,97 +4,120 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class CalculadoraHumana {
-    static void mostrarInstrucciones(int numIntentos) {
-        System.out.println("Resuelve las operaciones: ");
+    static final int MAX_OPERACIONES = 7;
+    static final int MAX_FALLOS = 3;
+    static final int MAX_VALOR = 200;
+
+    static void mostrarInstrucciones() {
+        System.out.println("---La Calculadora Humana---");
+        System.out.println("Resuelve " + MAX_OPERACIONES + " operaciones correctamente.");
+        System.out.println("Puedes fallar hasta " + MAX_FALLOS + " veces.");
+        System.out.println("Todos los resultados estarán entre 1 y " + MAX_VALOR + ".");
         System.out.println();
-    }
-    static int generarPrimeraOperacion() {
-        int operando1 = generarAleatorio(200);
-        int operando2 = generarAleatorio(200);
-        return 0;
     }
     static int pedirResultado(){
         Scanner sc = new Scanner(System.in);
+        System.out.print("Tu respuesta: ");
         return sc.nextInt();
     }
     static int obtenerOperando2Division(int operando1){
-        
-        return 0;    
+         for (int i = 2; i <= operando1; i++) {
+            if (operando1 % i == 0 && operando1 / i <= MAX_VALOR) {
+                return i;
+            }
+        }
+        return -1;    
     }
     static int obtenerOperando2Suma(int operando1) {
-        return 0;
+        int max = MAX_VALOR - operando1;
+        return generarAleatorio(max > 0 ? max : 1);
     }
     static int obtenerOperando2Resta(int operando1) {
-        return 0;
+        return generarAleatorio(operando1);
     }
     static int obtenerOperando2Multiplicacion(int operando1) {
-        return 0;
+        int max = MAX_VALOR / operando1;
+        return generarAleatorio(max > 0 ? max : 1);
     }
     static int generarOperacion(int operando1) {
-        boolean operadorValido = false;
-        
-        do{
-            int operador = generarAleatorio(4);
+        int operador = generarAleatorio(4);
+        int operando2 = 0;
+        int resultado = 0;
+        boolean valido = false;
+
+        do {
             switch (operador) {
                 case 1:
-                    if (operando1 < 150) {
-                        operadorValido = true;
-                        //generar operando 2
-                    }
+                    operando2 = obtenerOperando2Suma(operando1);
+                    resultado = operando1 + operando2;
+                    valido = resultado <= MAX_VALOR;
+                    if (valido)
+                        System.out.println(operando1 + " + " + operando2 + " = ?");
                     break;
+
                 case 2:
-                    if (operando1 >= 50) {
-                        operadorValido = true;
-                        //generar operando 2
-                    }
+                    operando2 = obtenerOperando2Resta(operando1);
+                    resultado = operando1 - operando2;
+                    valido = resultado >= 0;
+                    if (valido)
+                        System.out.println(operando1 + " - " + operando2 + " = ?");
                     break;
+
                 case 3:
-                    if (operando1 < 150) {
-                        operadorValido = true;
-                        //generar operando 2
-                    }
+                    operando2 = obtenerOperando2Multiplicacion(operando1);
+                    resultado = operando1 * operando2;
+                    valido = resultado <= MAX_VALOR;
+                    if (valido)
+                        System.out.println(operando1 + " * " + operando2 + " = ?");
                     break;
+
                 case 4:
-                    if (operando1 > 50) {
-                        operadorValido = true;
-                        //Añadir condicion que no sea primo en el if
-                        //generar operando 2
+                    operando2 = obtenerOperando2Division(operando1);
+                    if (operando2 != -1) {
+                        resultado = operando1 / operando2;
+                        valido = true;
+                        System.out.println(operando1 + " / " + operando2 + " = ?");
                     }
                     break;
             }
-        } while(!operadorValido);
-        
-        return 0;
+        } while (!valido);
+
+        return resultado;
     }
+
     static int generarAleatorio(int max) {
         Random rnd = new Random();
-        int numAleatorio = rnd.nextInt(max) + 1;
-        return numAleatorio;
+        return rnd.nextInt(max) + 1;
     }
     public static void main(String[] args) {
-        final int MAX_ACIERTOS = 7;
-        final int MAX_NUM = 200;
+        mostrarInstrucciones();
+
         int aciertos = 0;
-        int operando1, operando2;
+        int fallos = 0;
+        int operando1 = generarAleatorio(MAX_VALOR);
 
-        mostrarInstrucciones(MAX_ACIERTOS);
+        while (aciertos < MAX_OPERACIONES && fallos < MAX_FALLOS) {
+           int resultadoCorrecto = generarOperacion(operando1);
+            int respuesta = pedirResultado();
 
-        operando1 = generarAleatorio(MAX_NUM);
-        int resultado = generarOperacion(operando1);
-        int resultadoUsuario = pedirResultado();
+            while (respuesta != resultadoCorrecto) {
+                System.out.println("Incorrecto. Intenta otra vez.");
+                fallos++;
+                if (fallos >= MAX_FALLOS) break;
+                respuesta = pedirResultado();
+            }
 
-        while (resultado == resultadoUsuario) {
-            aciertos++;
-            //Sigue jugando
-            operando1 = resultado;
-            generarOperacion(operando1);
-            //int resultadoUsuario = pedirResultado();
+            if (respuesta == resultadoCorrecto) {
+                System.out.println("Correcto!");
+                aciertos++;
+                operando1 = resultadoCorrecto;
+            }
         }
 
-        if (aciertos >= MAX_ACIERTOS) {
+        if (aciertos >= MAX_OPERACIONES) {
             System.out.println("Enhorabuena!!");
         } else {
-            System.out.println("No conseguiste los " + MAX_ACIERTOS + " aciertos necesarios");
+            System.out.println("Has superado el número máximo de fallos.");
         }
     }
 }
