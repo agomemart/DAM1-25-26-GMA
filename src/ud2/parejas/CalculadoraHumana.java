@@ -3,6 +3,10 @@ package ud2.parejas;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * @author Adrián Gómez
+ */
+
 public class CalculadoraHumana {
     static final int MAX_OPERACIONES = 7;
     static final int MAX_FALLOS = 3;
