@@ -8,6 +8,7 @@ import java.util.Scanner;
  */
 
 public class CalculadoraHumana {
+    static Scanner sc = new Scanner(System.in);
     static final int MAX_OPERACIONES = 7;
     static final int MAX_FALLOS = 3;
     static final int MAX_VALOR = 200;
@@ -20,7 +21,6 @@ public class CalculadoraHumana {
         System.out.println();
     }
     static int pedirResultado(){
-        Scanner sc = new Scanner(System.in);
         System.out.print("Tu respuesta: ");
         return sc.nextInt();
     }
@@ -123,5 +123,6 @@ public class CalculadoraHumana {
         } else {
             System.out.println("Has superado el número máximo de fallos.");
         }
+        sc.close();
     }
 }
