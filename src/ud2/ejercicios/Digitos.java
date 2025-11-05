@@ -9,9 +9,6 @@ public class Digitos {
         int num = sc.nextInt();
         sc.close();
 
-        int digito = 0;
-        int denominador = 0;
-
         for (int i = 1; i <= num; i *= 10) {
             System.out.println(num / i % 10);
         }
