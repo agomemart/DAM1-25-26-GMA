@@ -2,6 +2,7 @@ package ud2.parejas;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 /**
  * @author Adrián Gómez
  */

@@ -1,6 +1,7 @@
 package ud2.parejas;
 
 import java.util.Scanner;
+
 /**
  * @author Adrián Gómez
  */
@@ -12,7 +13,7 @@ public class FormacionSoldados {
         sc.close();
 
         while (numSoldados >= 4) {
-            int lado = (int)Math.sqrt(numSoldados);
+            int lado = (int) Math.sqrt(numSoldados);
             int usados = lado * lado;
 
             System.out.println("Formación cuadrada: " + usados + " soldados");
