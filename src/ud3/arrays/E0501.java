@@ -8,7 +8,7 @@ public class E0501 {
         int[] arrayAleatorio = new int[n];
 
         for (int i = 0; i < arrayAleatorio.length; i++) {
-            arrayAleatorio[i] = rnd.nextInt(100);
+            arrayAleatorio[i] = rnd.nextInt(1,101);
         }
         return arrayAleatorio;
     }
@@ -21,8 +21,17 @@ public class E0501 {
         return sumaNumeros;
     }
 
+   static int sumarNumerosArray2(int t[]) {
+        int sumaNumeros = 0;
+        for (int numero : t) {
+            sumaNumeros += numero;
+        }
+        return sumaNumeros;
+   }
+
     public static void main(String[] args) {
         int[] tabla = arrayAleatorio(10);
         System.out.println("Suma números: " + sumarNumerosArray(tabla));
+        System.out.println("Suma números: " + sumarNumerosArray2(tabla));
     }
 }
