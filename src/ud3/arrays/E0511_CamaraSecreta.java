@@ -1,5 +1,6 @@
 package ud3.arrays;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class E0511_CamaraSecreta {
         int[] combinacionSecreta = arrayAleatorio(longitud);
         int[] combinacionUsuario = new int[longitud];
         
-        while (!combinacionSecreta.equals(combinacionUsuario)) {
+        while (!Arrays.equals(combinacionSecreta, combinacionUsuario)) {
             for (int i = 0; i < combinacionUsuario.length; i++) {
                 System.out.print("Inserta el número " + i + " de la combinación: ");
                 combinacionUsuario[i] = sc.nextInt();
