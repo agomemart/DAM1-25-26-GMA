@@ -29,11 +29,13 @@ public class Util {
     }
 
     public static int[] eliminarAlInicio(int[] t) {
-        for (int i = 0; i < t.length - 1; i++) {
+        /*for (int i = 0; i < t.length - 1; i++) {
             t[i] = t[i + 1];
-        }
+        }*/
 
-        t = Arrays.copyOf(t, t.length - 1);
+        //t = Arrays.copyOf(t, t.length - 1);
+
+        t = Arrays.copyOfRange(t, 1, t.length);
         return t;
     }
 }
