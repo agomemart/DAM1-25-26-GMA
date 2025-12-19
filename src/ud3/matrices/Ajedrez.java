@@ -82,6 +82,55 @@ public class Ajedrez {
         t[mov[0]][mov[1]] = '-';
     }
 
+    public static boolean esMovimientoValido(char[][] t, int[] mov, boolean turnoBlancas) {
+        boolean esMovimientoValido = true;
+
+        if (turnoBlancas) {
+            if (t[mov[0]][mov[1]] != 'P' &&
+                t[mov[0]][mov[1]] != 'T' &&
+                t[mov[0]][mov[1]] != 'C' &&
+                t[mov[0]][mov[1]] != 'A' &&
+                t[mov[0]][mov[1]] != 'D' &&
+                t[mov[0]][mov[1]] != 'R') {
+                    System.out.println("La casilla de origen no contiene una pieza blanca");
+                    return false;
+                }
+        } else {
+            if (t[mov[0]][mov[1]] != 'p' &&
+                t[mov[0]][mov[1]] != 't' &&
+                t[mov[0]][mov[1]] != 'c' &&
+                t[mov[0]][mov[1]] != 'a' &&
+                t[mov[0]][mov[1]] != 'd' &&
+                t[mov[0]][mov[1]] != 'r') {
+                    System.out.println("La casilla de origen no contiene una pieza negra");
+                    return false;
+                }
+        }
+
+        if (turnoBlancas) {
+            if (t[mov[2]][mov[3]] != 'P' &&
+                t[mov[2]][mov[3]] != 'T' &&
+                t[mov[2]][mov[3]] != 'C' &&
+                t[mov[2]][mov[3]] != 'A' &&
+                t[mov[2]][mov[3]] != 'D' &&
+                t[mov[2]][mov[3]] != 'R') {
+                    System.out.println("La casilla de destino no contiene una pieza blanca");
+                    return false;
+                }
+        } else {
+            if (t[mov[2]][mov[3]] != 'p' &&
+                t[mov[2]][mov[3]] != 't' &&
+                t[mov[2]][mov[3]] != 'c' &&
+                t[mov[2]][mov[3]] != 'a' &&
+                t[mov[2]][mov[3]] != 'd' &&
+                t[mov[2]][mov[3]] != 'r') {
+                    System.out.println("La casilla de destino no contiene una pieza negra");
+                    return false;
+                }
+        }
+        return esMovimientoValido;
+    }
+
     public static void main(String[] args) {
         char tablero[][] = inicializarTablero();
         boolean turnoBlancas = true;
