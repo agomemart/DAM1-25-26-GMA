@@ -50,6 +50,13 @@ public class Matriculas {
         return null;
     }
 
+    static int compararMatriculas(String m1, String m2) {
+        String m1Aux = m1.substring(4, 7) + m1.substring(0,4);
+        String m2Aux = m2.substring(4, 7) + m2.substring(0,4);
+
+        return m1Aux.compareToIgnoreCase(m2Aux);
+    }
+
     @Test
     void esMatriculaValidaTest() {
         assertFalse(esMatriculaValida(null));
