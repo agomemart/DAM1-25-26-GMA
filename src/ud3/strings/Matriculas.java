@@ -47,12 +47,39 @@ public class Matriculas {
     }
 
     static String siguienteMatricula(String matricula) {
-        return null;
+        if (!esMatriculaValida(matricula)) {
+            return null;
+        }
+        int parteNumerica = Integer.parseInt(matricula.substring(0, 4));
+        char[] letras = matricula.substring(4, 7).toCharArray();
+        String resultado = "";
+        do {
+            if (parteNumerica < 9999) {
+                parteNumerica++;
+            } else {
+                parteNumerica = 0;
+                for (int i = letras.length - 1; i >= 0; i--) {
+                    if (letras[i] == 'Z') {
+                        letras[i] = 'B';
+                    } else {
+                        letras[i]++;
+                        break;
+                    }
+                }
+            }
+            String numerosSiguientrMatricula = String.valueOf(parteNumerica);
+            while (numerosSiguientrMatricula.length() < 4) {
+                numerosSiguientrMatricula = 0 + numerosSiguientrMatricula;
+            }
+            resultado = numerosSiguientrMatricula + String.valueOf(letras);
+        } while (!esMatriculaValida(resultado));
+
+        return resultado;
     }
 
     static int compararMatriculas(String m1, String m2) {
-        String m1Aux = m1.substring(4, 7) + m1.substring(0,4);
-        String m2Aux = m2.substring(4, 7) + m2.substring(0,4);
+        String m1Aux = m1.substring(4, 7) + m1.substring(0, 4);
+        String m2Aux = m2.substring(4, 7) + m2.substring(0, 4);
 
         return m1Aux.compareToIgnoreCase(m2Aux);
     }
