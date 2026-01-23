@@ -7,30 +7,22 @@ import org.junit.jupiter.api.Test;
 
 public class DiagonalesIguales {
     static boolean diagonalesIguales(int[][] t) {
-        if (t == null || t.length != t[0].length) {
+        if (t == null || t.length == 0 || t.length != t[0].length) {
             return false;
         }
 
-        boolean sonDiagonalesIguales = false;
-        int[] diagonalPrinc = new int[t.length];
-        int[] diagonalSec = new int[t[0].length];
-        for (int i = 0; i < t.length; i++) {
-            for (int j = 0; j < t.length; j++) {
-                diagonalPrinc[i] = t[i][i];
-                if (i + j == t.length - 1) {
-                    diagonalSec[i] = t[i][j];
-                }
-            }
-        }
+        boolean igualDirecto = true;
+        boolean igualInverso = true;
 
-        for (int i = 0; i < diagonalSec.length; i++) {
-            if (diagonalPrinc[i] == diagonalSec[i]) {
-                sonDiagonalesIguales = true;
-            } else {
-                return false;
+        for (int i = 0; i < t.length; i++) {
+            if (t[i][i] != t[i][t.length - 1 - i]) {
+                igualDirecto = false;
+            }
+            if (t[i][i] != t[t.length - 1 - i][i]) {
+                igualInverso = false;
             }
         }
-        return sonDiagonalesIguales;
+        return igualDirecto || igualInverso;
     }
 
     int[][] t21 = {

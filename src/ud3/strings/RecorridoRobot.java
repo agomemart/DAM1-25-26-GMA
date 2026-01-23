@@ -6,17 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class RecorridoRobot {
-    public static void main(String[] args) {
-        String[] mapa = {
-                "  Z       ",
-                " *        ",
-                "  *  *    ",
-                "          ",
-                " A        "
-        };
-
-    }
-
     static boolean recorridoRobot(String[] mapa, String instrucciones) {
         char direccion = 'W';
         int fila = 0;

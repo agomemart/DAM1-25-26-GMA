@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 public class AbadiasPiernaicas {
     static int[] getMontanasAbadias(int[] montanasCordilleras) {
+        if (montanasCordilleras == null || montanasCordilleras.length == 0) {
+            return null;
+        }
         int[] abadias = new int[0];
         int contadorAbadias = 0;
         int maximo = 0;
