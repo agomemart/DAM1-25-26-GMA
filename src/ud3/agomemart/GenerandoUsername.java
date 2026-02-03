@@ -40,46 +40,53 @@ public class GenerandoUsername {
 
         String nombreUsuario = "";
         char primeraLetraNombre = Character.toLowerCase(nombre.charAt(0));
-        String parteAp1 = ap1.toLowerCase().substring(0, 4);
-        String parteAp2 = ap2.toLowerCase().substring(0, 4);
+        String parteAp1 = "";
+        if (ap1.length() > 4) {
+            parteAp1 = ap1.toLowerCase().substring(0, 4);
+        } else {
+            parteAp1 = ap1.toLowerCase().substring(0, ap1.length());
+        }
+        String parteAp2 = "";
+        if (ap2.length() > 4) {
+            parteAp2 = ap2.toLowerCase().substring(0, 4);
+        } else {
+            parteAp2 = ap2.toLowerCase().substring(0, ap2.length());
+        }
+        
         String parteAp1Comprobada = "";
         String parteAp2Comprobada = "";
 
         primeraLetraNombre = caracterValido(primeraLetraNombre);
 
-        for (int i = 0; i < ap1.length(); i++) {
+        for (int i = 0; i < parteAp1.length(); i++) {
             if (i < 4) {
                 if (ap1.charAt(i) == ' ') {
-                    int indiceUltimoEspacio = ap1.lastIndexOf(' ');
-                    if (indiceUltimoEspacio + 3 < ap1.length()) {
-                        parteAp1 = ap1.substring(indiceUltimoEspacio, indiceUltimoEspacio + 3);
-                    } else {
-                        parteAp1 = ap1.substring(indiceUltimoEspacio, ap1.length() - 1);
-                    }
+                    if (ap1.charAt(i) == ' ') {
+                    int indicePrimerEspacio = ap1.indexOf(' ');
+                    parteAp1 = ap1.toLowerCase().substring(0, indicePrimerEspacio);
+                    break;
+                }
                 }
             }
         }
 
-        for (int i = 0; i < ap2.length(); i++) {
+        for (int i = 0; i < parteAp2.length(); i++) {
             if (i < 4) {
                 if (ap2.charAt(i) == ' ') {
-                    int indiceUltimoEspacio = ap2.lastIndexOf(' ');
-                    if (indiceUltimoEspacio + 4 < ap2.length()) {
-                        parteAp2 = ap2.substring(indiceUltimoEspacio + 1, indiceUltimoEspacio + 4);
-                    } else {
-                        parteAp2 = ap2.substring(indiceUltimoEspacio, ap2.length() - 1);
-                    }
+                    int indicePrimerEspacio = ap2.indexOf(' ');
+                    parteAp2 = ap2.toLowerCase().substring(0, indicePrimerEspacio);
+                    break;
                 }
             }
 
         }
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < parteAp1.length(); i++) {
             char c = caracterValido(parteAp1.charAt(i));
             parteAp1Comprobada += c;
         }
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < parteAp2.length(); i++) {
             char c = caracterValido(parteAp2.charAt(i));
             parteAp2Comprobada += c;
         }

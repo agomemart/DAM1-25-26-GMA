@@ -2,8 +2,6 @@ package ud3.agomemart;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 /**
@@ -15,21 +13,26 @@ public class PreguntaMasDificil {
             return -1;
         }
 
-        double notaMediaPreguntas[] = new double[notas.length];
-        int contFilas = 0;
+        
+        double media = 0;
+        double mediaMin = Double.MAX_VALUE;
+
         for (int j = 0; j < notas[0].length; j++) {
-            int sumaNotasPregunta = 0;
+            double sumaNotasPregunta = 0;
 
             for (int i = 0; i < notas.length; i++) {
                 sumaNotasPregunta += notas[i][j];
             }
-            notaMediaPreguntas[contFilas] = (double) sumaNotasPregunta / notas.length;
-            contFilas++;
+            media = sumaNotasPregunta / notas.length;
+
+            if(media < mediaMin) {
+                mediaMin = media;
+            }
+            
         }
 
-        Arrays.sort(notaMediaPreguntas);
-        notaMediaPreguntas = Arrays.copyOfRange(notaMediaPreguntas, 1, notaMediaPreguntas.length);
-        return notaMediaPreguntas[0];
+       
+        return mediaMin;
     }
 
     @Test

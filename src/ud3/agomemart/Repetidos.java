@@ -14,19 +14,20 @@ public class Repetidos {
             return new int[0];
         }
 
-        int[] repetidos = new int[t.length];
+        int[] tCopia = t.clone();
+        Arrays.sort(tCopia);
+        int[] repetidos = new int[0];
+        int contRepetidos  = 0;
 
-        for (int i = 0; i < t.length; i++) {
-            int numRepetido = 0;
-            for (int j = 0; j < t.length; j++) {
-                if (t[i] == t[j]) {
-                    numRepetido = t[i];
+        for (int i = 1; i < tCopia.length; i++) {
+            if (tCopia[i] == tCopia[i - 1]) {
+                if (contRepetidos == 0 || repetidos[contRepetidos - 1] != tCopia[i]) {
+                    repetidos = Arrays.copyOf(repetidos, repetidos.length + 1);
+                    repetidos[contRepetidos] = tCopia[i];
+                    contRepetidos++;
                 }
             }
-            repetidos[i] = numRepetido;
         }
-
-        Arrays.sort(repetidos);
 
         return repetidos;
     }

@@ -11,36 +11,21 @@ public class HoraFeliz {
     public static void main(String[] args) {
         Random rnd = new Random();
 
-        int horaAleatoria = rnd.nextInt(23);
-        int minutoAleatorio = rnd.nextInt(59);
+        int horaAleatoria = rnd.nextInt(24);
+        int minutoAleatorio = rnd.nextInt(60);
 
-        int horaAleatoriaAMinutos = horaAleatoria * 60 + minutoAleatorio;
-        int horaFelizTermina = horaAleatoriaAMinutos + 60;
-        int horasHoraFeliz = horaFelizTermina / 60;
-        int minutosHoraFeliz = horaFelizTermina % 60;
+        LocalTime inicio = LocalTime.of(horaAleatoria, minutoAleatorio);
+        LocalTime fin = inicio.plusHours(1);
 
-        String horaAleatoriaString = String.valueOf(horaAleatoria);
-        String minutoAleatorioString = String.valueOf(minutoAleatorio);
+        System.out.println("Hora feliz: " + inicio + " Fin: " + fin);
+        
+        LocalTime horaActual = LocalTime.now();
+        System.out.println("Hora actual: " + horaActual);
 
-        if (horaAleatoriaString.length() < 2) {
-            horaAleatoriaString = 0 + horaAleatoriaString;
-        }
-        if (minutoAleatorioString.length() < 2) {
-            minutoAleatorioString = 0 + minutoAleatorioString;
-        }
-
-        String horaAleatoriaGenerada = horaAleatoria + ":" + minutoAleatorio;
-
-        System.out.println("Hora feliz: " + horaAleatoriaGenerada);
-
-        String horaActual = String.valueOf(LocalTime.now());
-        int horasActuales = Integer.valueOf(horaActual.substring(0, 2));
-        int minutosActuales = Integer.valueOf(horaActual.substring(3, 5));
-
-        if (horasActuales == horaAleatoria || horasActuales == horasHoraFeliz) {
-            if (minutosActuales > minutosHoraFeliz && minutosActuales < minutosHoraFeliz) {
-                System.out.println("ESTÄS EN LA HORA FELIZ");
-            }
+        if (horaActual.isAfter(inicio) && horaActual.isBefore(fin)) {
+            System.out.println("Hora feliz");
+        } else {
+            System.out.println("No es hora feliz");
         }
     }
 }
