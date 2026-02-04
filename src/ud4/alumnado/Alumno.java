@@ -10,6 +10,16 @@ public class Alumno {
     LocalDate fechaNacimiento;
     double notaProgramacion;
     double notaContornos;
+    private static String centroEducativo = "IES Chan do Monte";
+
+    public static void setCentroEducativo(String nuevoCentro) {
+        if (nuevoCentro != null && !nuevoCentro.isEmpty())
+            centroEducativo = nuevoCentro;
+    }
+
+    public static String getCentroEducativo() {
+        return centroEducativo;
+    }
 
     public void mostrar() {
         System.out.println("Ficha de Alumno/a");
@@ -26,12 +36,47 @@ public class Alumno {
     }
 
     public String getUsername() {
-        char primeraLetraNombre = Character.toLowerCase(nombre.charAt(0));
-        String primerAp = apellido1.toLowerCase().substring(0, 4);
-        String segundoAp = apellido2.toLowerCase().substring(0, 4);
-        String nombreUsuario = primeraLetraNombre + primerAp + segundoAp;
+        // Genera el nombre de usuario
+        String username = "";
+        username += nombre.charAt(0);
 
-        return nombreUsuario;
+        int i = 0;
+        while (i < apellido1.length() && i < 4 && apellido1.charAt(i) != ' ') {
+            username += apellido1.charAt(i);
+            i++;
+        }
+
+        i = 0;
+        while (i < apellido2.length() && i < 4 && apellido2.charAt(i) != ' ') {
+            username += apellido2.charAt(i);
+            i++;
+        }
+
+        username = username.toLowerCase();
+
+        username = username.replace('á', 'a');
+        username = username.replace('é', 'e');
+        username = username.replace('í', 'i');
+        username = username.replace('ó', 'o');
+        username = username.replace('ú', 'u');
+        username = username.replace('ü', 'u');
+        username = username.replace('ñ', 'n');
+
+        return username;
+    }
+
+    public String getIniciales() {
+        String iniciales = "";
+        iniciales += nombre.charAt(0) + apellido1.charAt(0) + apellido2.charAt(0);
+
+        return iniciales.toUpperCase();
+    }
+
+    public String getNombreCompleto() {
+        String nombreCompleto = "";
+        nombreCompleto += nombre + " " + apellido1 + " " + apellido2;
+
+        return nombreCompleto;
     }
 
 }

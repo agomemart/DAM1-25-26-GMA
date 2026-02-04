@@ -20,5 +20,16 @@ public class Persona {
         estatura += incremento;
     }
 
+    public Persona(String nombre, int edad, double estatura) {
+        this.nombre = nombre;
+        this.edad = (byte) edad;
+        this.estatura = estatura;
+    }
+
+    public Persona() {
+    }
+
+    
+
 
 }

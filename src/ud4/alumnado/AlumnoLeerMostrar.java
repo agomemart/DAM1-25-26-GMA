@@ -42,8 +42,7 @@ public class AlumnoLeerMostrar {
         System.out.print("Nota Programación: ");
         alumno.notaProgramacion = sc.nextDouble();
         System.out.print("Nota Contornos: ");
-        alumno.notaContornos = sc.nextDouble();
-        sc.close();     
+        alumno.notaContornos = sc.nextDouble();     
         return alumno;   
     }
 
