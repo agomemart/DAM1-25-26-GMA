@@ -52,31 +52,24 @@ public class GenerandoUsername {
         } else {
             parteAp2 = ap2.toLowerCase().substring(0, ap2.length());
         }
-        
+
         String parteAp1Comprobada = "";
         String parteAp2Comprobada = "";
 
         primeraLetraNombre = caracterValido(primeraLetraNombre);
 
         for (int i = 0; i < parteAp1.length(); i++) {
-            if (i < 4) {
-                if (ap1.charAt(i) == ' ') {
-                    if (ap1.charAt(i) == ' ') {
-                    int indicePrimerEspacio = ap1.indexOf(' ');
-                    parteAp1 = ap1.toLowerCase().substring(0, indicePrimerEspacio);
-                    break;
-                }
-                }
+            if (ap1.charAt(i) == ' ') {
+                int indicePrimerEspacio = ap1.indexOf(' ');
+                parteAp1 = ap1.toLowerCase().substring(0, indicePrimerEspacio);
             }
+
         }
 
         for (int i = 0; i < parteAp2.length(); i++) {
-            if (i < 4) {
-                if (ap2.charAt(i) == ' ') {
-                    int indicePrimerEspacio = ap2.indexOf(' ');
-                    parteAp2 = ap2.toLowerCase().substring(0, indicePrimerEspacio);
-                    break;
-                }
+            if (ap2.charAt(i) == ' ') {
+                int indicePrimerEspacio = ap2.indexOf(' ');
+                parteAp2 = ap2.toLowerCase().substring(0, indicePrimerEspacio);
             }
 
         }
