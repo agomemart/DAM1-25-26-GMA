@@ -73,10 +73,7 @@ public class Alumno {
     }
 
     public String getNombreCompleto() {
-        String nombreCompleto = "";
-        nombreCompleto += nombre + " " + apellido1 + " " + apellido2;
-
-        return nombreCompleto;
+        return nombre + " " + apellido1 + " " + apellido2;
     }
 
 }
