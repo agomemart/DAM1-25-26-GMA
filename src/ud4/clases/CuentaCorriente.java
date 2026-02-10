@@ -1,7 +1,7 @@
 package ud4.clases;
 
 public class CuentaCorriente {
-    String dni;
+    private String dni;
     public String nombreTitular;
     private double saldo;
     private Gestor gestor;
@@ -33,6 +33,26 @@ public class CuentaCorriente {
 
     public void ingresarDinero(double cantidad) {
         saldo += cantidad;
+    }
+
+    public static boolean transferencia(CuentaCorriente c1, CuentaCorriente c2, double importe) {
+        if (c1.saldo >= importe) {
+            c2.saldo += importe;
+            c1.saldo -= importe;
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean transferir(CuentaCorriente ccDestino, double importe) {
+        if (this.saldo >= importe) {
+            ccDestino.saldo += importe;
+            this.saldo -= importe;
+            return true;
+        }
+
+        return false;
     }
 
     public void mostrarInformacion() {
