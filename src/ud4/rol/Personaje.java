@@ -1,52 +1,36 @@
 package ud4.rol;
 
 public class Personaje {
-    String nombre;
-    String raza;
-    int fuerza;
-    int agilidad;
-    int constitucion;
-    int nivel = 1;
-    int experiencia = 0;
-    int puntosVida = 50 + constitucion;
+    private String nombre;
+    private Raza raza;
+    private int fuerza;
+    private int agilidad;
+    private int constitucion;
+    private int nivel;
+    private int experiencia;
+    private int puntosVida;
 
-    public Personaje(String nombre, String raza, int fuerza, int agilidad, int constitucion, int nivel, int experiencia,
+    public Personaje(String nombre, Raza raza, int fuerza, int agilidad, int constitucion, int nivel, int experiencia,
             int puntosVida) {
+        if (fuerza <= 0 || agilidad <= 0 || constitucion <= 0 || nivel <= 0 ||
+                puntosVida <= 0 || experiencia < 0 || raza == null) {
+            throw new IllegalArgumentException("No se puede crear el personaje. Parámetros incorrectos");
+        }
+
         this.nombre = nombre;
         this.raza = raza;
-        if (fuerza >= 1) {
-            this.fuerza = fuerza;
-        } else {
-            fuerza = 1;
-        }
 
-        if (agilidad >= 1) {
-            this.agilidad = agilidad;
-        } else {
-            agilidad = 1;
-        }
-
-        if (constitucion >= 1) {
-            this.constitucion = constitucion;
-        } else {
-            constitucion = 1;
-        }
-
+        this.fuerza = fuerza;
+        this.agilidad = agilidad;
+        this.constitucion = constitucion;
         this.nivel = nivel;
-        this.experiencia = experiencia;
         this.puntosVida = puntosVida;
+
+        this.experiencia = experiencia;
     }
 
-    /*public Personaje(String raza) {
-        this.raza = raza;
+    public String mostrar() {
+        return nombre + " (" + raza + ")";
     }
 
-    public Personaje(String nombre) {
-        this.nombre = nombre;
-    }*/
-
-    public void mostrar() {
-        
-    }
-    
 }
