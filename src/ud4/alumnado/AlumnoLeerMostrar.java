@@ -22,9 +22,9 @@ public class AlumnoLeerMostrar {
         System.out.println("Apellido2: " + alumno.apellido2);
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println("Fecha de Nacimiento: " + alumno.fechaNacimiento.format(formato));
-        System.out.println("Nota Programación: " + alumno.notaProgramacion );
-        System.out.println("Nota Contornos: " + alumno.notaContornos);
-        System.out.println("Nota media: " + ((alumno.notaProgramacion + alumno.notaContornos) / 2));
+        //System.out.println("Nota Programación: " + alumno.notaProgramacion );
+        //System.out.println("Nota Contornos: " + alumno.notaContornos);
+        //System.out.println("Nota media: " + ((alumno.notaProgramacion + alumno.notaContornos) / 2));
     }
 
     public static Alumno leerDatosAlumno() {
@@ -40,9 +40,9 @@ public class AlumnoLeerMostrar {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         alumno.fechaNacimiento = LocalDate.parse(sc.nextLine(), formato);
         System.out.print("Nota Programación: ");
-        alumno.notaProgramacion = sc.nextDouble();
+        //alumno.notaProgramacion = sc.nextDouble();
         System.out.print("Nota Contornos: ");
-        alumno.notaContornos = sc.nextDouble();     
+        //alumno.notaContornos = sc.nextDouble();     
         return alumno;   
     }
 
