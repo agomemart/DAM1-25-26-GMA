@@ -7,7 +7,7 @@ public class AlumnosLeerMostrarArray {
         Alumno[] alumnos = new Alumno[NUM_ALUMNOS];
 
         for (int i = 0; i < alumnos.length; i++) {
-            alumnos[i] = AlumnoLeerMostrar.leerDatosAlumno();            
+            //alumnos[i] = AlumnoLeerMostrar.leerDatosAlumno();            
         }
 
         System.out.println("\n\nLISTADO DE ALUMNOS");

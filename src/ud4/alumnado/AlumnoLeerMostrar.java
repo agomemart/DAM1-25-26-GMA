@@ -9,7 +9,7 @@ public class AlumnoLeerMostrar {
         // Instancias Alumno
         Alumno alumno = null;
 
-        alumno = leerDatosAlumno();
+        //alumno = leerDatosAlumno();
             
         mostrarAlumno(alumno);
     }
@@ -27,7 +27,7 @@ public class AlumnoLeerMostrar {
         //System.out.println("Nota media: " + ((alumno.notaProgramacion + alumno.notaContornos) / 2));
     }
 
-    public static Alumno leerDatosAlumno() {
+    /*public static Alumno leerDatosAlumno() {
         Alumno alumno = new Alumno();
         Scanner sc = new Scanner(System.in);
         System.out.print("Nombre: ");
@@ -44,6 +44,6 @@ public class AlumnoLeerMostrar {
         System.out.print("Nota Contornos: ");
         //alumno.notaContornos = sc.nextDouble();     
         return alumno;   
-    }
+    }*/
 
 }

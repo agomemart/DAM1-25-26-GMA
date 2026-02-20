@@ -1,0 +1,5 @@
+La cláusula default en la sentencia switch es:	Obligatoria y tiene que ser la última que aparezca.	Obligatoria, pero puede aparecer en cualquier lugar.	Opcional y tiene que ser la última que aparezca.	Opcional y puede usarse en cualquier lugar.	3
+Los operadores lógicos operan con valores booleanos, resultando:	Valores enteros.	Valores enteros y booleanos.	Otros tipos de valores.	Solo valores booleanos.	3
+La evaluación de una expresión relacional puede generar un valor de tipo:	Entero.	Real	Booleano.	Todos los anteriores.	2
+La expresión 3 == 3 && 2 < 3 && 1 != 2 resulta:	Cierto.	Falso.	No se puede evaluar.	No genera un booleano, ya que la expresión es aritmética.	0
+¿Qué resulta de la siguiente expresión, donde interviene la variable booleana a?: 3 != 3 || a || 1 < 2	Dependerá del valor a.	Cierto.	Falso.	No se puede evaluar.	1
