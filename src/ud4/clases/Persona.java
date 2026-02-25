@@ -41,4 +41,27 @@ public class Persona {
         edad = 18;
         estatura = 1.7;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Persona other = (Persona) obj;
+        if (nombre == null) {
+            if (other.nombre != null)
+                return false;
+        } else if (!nombre.equals(other.nombre))
+            return false;
+        if (edad != other.edad)
+            return false;
+        return true;
+    }
+
+    
+
+    
 }
