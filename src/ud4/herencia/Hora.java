@@ -1,16 +1,12 @@
-package ud4.clases;
+package ud4.herencia;
 
 public class Hora {
     protected byte hora;
     protected byte minuto;
 
     public Hora(int hora, int minuto) {
-        if (hora >= 0 && hora < 24 && minuto >= 0 && minuto < 60) {
-            this.hora = (byte) hora;
-            this.minuto = (byte) minuto;
-        } else {
-            throw new IllegalArgumentException("Los valres de hora, minuto, o segundo son incorrectos.");
-        }
+        setHora(hora);
+        setMinuto(minuto);
     }
 
     public void inc() {
@@ -44,13 +40,32 @@ public class Hora {
 
     @Override
     public String toString() {
-        return hora + ":" + minuto;
+        return String.format("%02d:%02d", hora, minuto);
     }
 
-    /*
-     * public void mostrar() {
-     * System.out.printf("%02d:%02d:%02d %n", hora, minuto);
-     * }
-     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + hora;
+        result = prime * result + minuto;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Hora other = (Hora) obj;
+        if (hora != other.hora)
+            return false;
+        if (minuto != other.minuto)
+            return false;
+        return true;
+    }
 
 }

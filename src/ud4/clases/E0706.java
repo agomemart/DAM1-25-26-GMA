@@ -2,6 +2,8 @@ package ud4.clases;
 
 import java.util.Scanner;
 
+import ud4.herencia.Hora;
+
 public class E0706 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
