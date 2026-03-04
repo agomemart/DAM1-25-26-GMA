@@ -1,6 +1,6 @@
-package ud4.practicaex.claseabstracta;
+package ud4.practicaex.empleado;
 
-public class EmpleadoPorHoras extends Empleado {
+public class EmpleadoPorHoras extends Empleado implements Trabajable{
     private double horasTrabajadas;
     private double precioHora;
 
@@ -23,5 +23,10 @@ public class EmpleadoPorHoras extends Empleado {
     @Override
     public String descripcion() {
         return "Empleado por horas";
+    }
+
+    @Override
+    public void trabajar() {
+        System.out.println("Trabajando por horas");
     }
 }

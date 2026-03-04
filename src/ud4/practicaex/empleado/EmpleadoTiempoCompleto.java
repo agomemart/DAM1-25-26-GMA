@@ -1,6 +1,6 @@
-package ud4.practicaex.claseabstracta;
+package ud4.practicaex.empleado;
 
-public class EmpleadoTiempoCompleto extends Empleado{
+public class EmpleadoTiempoCompleto extends Empleado implements Trabajable{
 
     public EmpleadoTiempoCompleto(String nombre, double salarioBase) {
         super(nombre, salarioBase);
@@ -14,6 +14,11 @@ public class EmpleadoTiempoCompleto extends Empleado{
     @Override
     public String descripcion() {
         return "Empleado a tiempo completo";
+    }
+
+    @Override
+    public void trabajar() {
+        System.out.println("Trbajando jornada completa");
     }
     
 }

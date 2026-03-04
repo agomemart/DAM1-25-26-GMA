@@ -1,25 +1,26 @@
 package ud4.practicaex.vehiculo;
 
-public class Vehiculo {
-    private String marca;
+public abstract class Vehiculo implements Comparable<Vehiculo>, Competidor {
+    protected String marca;
     protected String modelo;
-    public int velocidadMaxima;
-    
-    public Vehiculo(String marca, String modelo, int velocidadMaxima) {
-        if (marca != null && !marca.isEmpty() && modelo != null && !modelo.isEmpty() && velocidadMaxima > 0) {
+    protected int potencia;
+
+    public Vehiculo(String marca, String modelo, int potencia) {
+        if (marca != null && !marca.isEmpty() && modelo != null && !modelo.isEmpty() && potencia > 0) {
             this.marca = marca;
             this.modelo = modelo;
-            this.velocidadMaxima = velocidadMaxima;
+            this.potencia = potencia;
         } else {
             throw new IllegalArgumentException("Datos inválidos");
         }
+
     }
 
-    public void mostrarInfo() {
-        System.out.println("Marca: " + marca);
-        System.out.println("Modelo: " + modelo);
-        System.out.println("Velocidad máxima: " + velocidadMaxima);
+    public abstract double calcularRendimiento();
+
+    @Override
+    public int compareTo(Vehiculo o) {
+        return Double.compare(this.calcularRendimiento(), o.calcularRendimiento());
     }
 
-    
 }

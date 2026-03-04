@@ -1,6 +1,6 @@
-package ud4.practicaex.claseabstracta;
+package ud4.practicaex.empleado;
 
-public abstract class Empleado {
+public abstract class Empleado implements Comparable<Empleado>{
     protected String nombre;
     protected double salarioBase;
     
@@ -23,4 +23,11 @@ public abstract class Empleado {
     public String descripcion(){
         return "Empleado genérico";
     }
+
+    @Override
+    public int compareTo(Empleado o) {
+        return Double.compare(this.calcularSalario(), o.calcularSalario());
+    }
+
+    
 }
