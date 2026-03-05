@@ -1,0 +1,36 @@
+@startuml
+
+class Monstruo {
+    #String nombre
+    #int ataque
+    #int defensa
+    #int velocidad
+    #int puntosVida
+
+    +String mostrar()
+    +String toString()
+    +boolean estaVivo()
+    +boolean perderVida(int puntos)
+    +atacar(Personaje p)
+    +{static} Monstruo generaMonstruoAleatorio()    
+}
+
+class Orco {
+    +Orco()
+}
+class Troll {
+    +Troll()
+}
+class Aranha {
+    +Aranha()
+}
+class Dragon {
+    +Dragon()
+}
+
+Monstruo <|-- Orco
+Monstruo <|-- Troll
+Monstruo <|-- Aranha
+Monstruo <|-- Dragon
+
+@enduml

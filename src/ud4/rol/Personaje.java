@@ -8,18 +8,21 @@ public class Personaje {
     private int fuerza;
     private int agilidad;
     private int constitucion;
-    private int nivel;
+    private byte nivel;
     private int experiencia;
-    private int puntosVida;
+    private int pv;
 
-    private static final int VIDA_MINIMA = 50;
+    private static int VIDA_MINIMA = 50;
 
+
+    /*
+    * CONSTRUCTORES
+    */
     public Personaje(String nombre, Raza raza, int fuerza, int agilidad, int constitucion, int nivel, int experiencia,
-            int puntosVida) {
-        if (fuerza <= 0 || agilidad <= 0 || constitucion <= 0 || nivel <= 0 ||
-                puntosVida <= 0 || experiencia < 0 || raza == null) {
-            throw new IllegalArgumentException("No se puede crear el personaje. Parámetros incorrectos");
-        }
+            int pv) {
+        if (fuerza <= 0 || agilidad <= 0 || constitucion <= 0 || nivel <= 0 || pv <= 0 || experiencia < 0
+                || raza == null)
+            throw new IllegalArgumentException("No se puede crear el personaje: parámetros incorrectos");
 
         this.nombre = nombre;
         this.raza = raza;
@@ -27,8 +30,8 @@ public class Personaje {
         this.fuerza = fuerza;
         this.agilidad = agilidad;
         this.constitucion = constitucion;
-        this.nivel = nivel;
-        this.puntosVida = puntosVida;
+        this.nivel = (byte) nivel;
+        this.pv = pv;
 
         this.experiencia = experiencia;
     }
@@ -38,62 +41,85 @@ public class Personaje {
     }
 
     public Personaje(String nombre, Raza raza) {
-        Random rnd = new Random();
-        this(nombre, raza, rnd.nextInt(100) + 1, rnd.nextInt(100) + 1, rnd.nextInt(100) + 1);
+        this(nombre, raza, rnd(1, 100),  rnd(1, 100), rnd(1, 100));
     }
 
     public Personaje(String nombre) {
         this(nombre, Raza.HUMANO);
     }
 
+    /*
+    * MÉTODOS DE INSTANCIA
+    */
+
     public String mostrar() {
-        return nombre + " (" + raza + ")\n - Fuerza: " + fuerza + "\n - Agilidad: " + agilidad + "\n - Constitución: "
-                + constitucion + "\n - Nivel: " + nivel + "\n - Puntos de vida: " + puntosVida;
+        String info = "";
+        info += nombre;
+        info += " (" + raza + ")\n";
+        info += "- Fuerza: " + fuerza + "\n";
+        info += "- Agilidad: " + agilidad + "\n";
+        info += "- Constitución: " + constitucion + "\n";
+        info += "- Nivel: " + nivel + "\n";
+        info += "- Experiencia: " + experiencia + "\n";
+        info += "- PV: " + pv + "\n";
+        return info;
     }
 
+
     public String toString() {
-        return nombre + " (" + puntosVida + "/" + getPvIniciales() + ")";
+        return nombre + " (" + pv + "/" + getPvIniciales() + ")";
     }
 
     private int getPvIniciales() {
         return constitucion + VIDA_MINIMA;
     }
 
-    public int sumarExperiencia(int puntos) {
+
+    
+
+    public int getPv() {
+        return pv;
+    }
+
+    int sumarExperiencia(int puntos) {
         int expAnterior = experiencia / 1000;
         experiencia += puntos;
         return experiencia / 1000 - expAnterior;
+
+        // @TODO Pensar si debemos subir de nivel aquí? 
     }
 
-    public void subirNivel() {
+    void subirNivel() {
         nivel++;
         fuerza = (int) (fuerza * 1.05);
         agilidad = (int) (agilidad * 1.05);
         constitucion = (int) (constitucion * 1.05);
+        
+        // @TODO Debería el personaje recuperar algo o toda la vida?
     }
 
-    public void curar() {
-        if (puntosVida < getPvIniciales()) {
-            puntosVida = getPvIniciales();
-        }
+    void curar() {
+        if (pv < getPvIniciales())
+            pv = getPvIniciales();
     }
 
-    public boolean perderVida(int puntos) {
-        puntosVida -= puntos;
+    boolean perderVida(int puntos) {
+        pv -= puntos;
         return !estaVivo();
     }
 
-    public boolean estaVivo() {
-        return puntosVida > 0;
+    boolean estaVivo(){
+        return pv > 0;
     }
 
-    public int atacar(Personaje enemigo) {
-        Random rnd = new Random();
 
-        int ataque = fuerza + rnd.nextInt(100) + 1;
-        int defensa = enemigo.agilidad + rnd.nextInt(100) + 1;
-        int danho = Math.min(ataque - defensa, enemigo.puntosVida);
-
+    /*
+    SISTEMA DE COMBATE
+    */
+    int atacar(Personaje enemigo) {
+        int ataque = fuerza + rnd(1, 100);
+        int defensa = enemigo.agilidad + rnd(1, 100);
+        int danho = Math.min(ataque - defensa, enemigo.pv);
         if (danho > 0) {
             enemigo.perderVida(danho);
             enemigo.sumarExperiencia(danho);
@@ -103,12 +129,28 @@ public class Personaje {
         return 0;
     }
 
+
+    /*
+    * UTILIDADES
+    */    
+    public static int rnd(int inicio, int fin) {
+        Random rnd = new Random();
+        return rnd.nextInt(inicio, fin + 1);
+    }
+
+
+
+    /*
+    * GETTERS
+    */
+    
+    public String getNombre() {
+        return nombre;
+    }
     public int getAgilidad() {
         return agilidad;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-    
+
+
 }
