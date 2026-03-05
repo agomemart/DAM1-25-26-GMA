@@ -30,7 +30,7 @@ public class Socio implements Comparable {
         //return otroSocio.nombre.compareTo(nombre); // Orden alfabético de nombre.
         int res =  id - otroSocio.id;
         if (res == 0)
-            return otroSocio.nombre.compareTo(nombre);  
+            return otroSocio.nombre.compareTo(nombre);
         else
             return res;
     }
