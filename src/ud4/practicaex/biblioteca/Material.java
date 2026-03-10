@@ -1,0 +1,43 @@
+package ud4.practicaex.biblioteca;
+
+public abstract class Material implements Comparable<Material>{
+    private String titulo;
+    private int anhoPublicacion;
+    private Genero genero;
+    
+    public Material(String titulo, int anhoPublicacion, Genero genero) {
+        if (titulo != null && !titulo.isEmpty() && anhoPublicacion > 0) {
+            this.titulo = titulo;
+            this.anhoPublicacion = anhoPublicacion;
+            this.genero = genero;
+        } else {
+            throw new IllegalArgumentException("Datos inválidos");
+        }
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public int getAnhoPublicacion() {
+        return anhoPublicacion;
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void mostrarInfo(){
+        System.out.println("Titulo: " + titulo);
+        System.out.println("Año: " + anhoPublicacion);
+        System.out.println("Genero: "+ genero.name());
+    }
+
+    @Override
+    public int compareTo(Material m) {
+        if (m.anhoPublicacion - this.anhoPublicacion == 0) {
+            return this.titulo.compareTo(m.titulo);
+        }
+        return m.anhoPublicacion - this.anhoPublicacion;
+    }
+}
