@@ -3,8 +3,8 @@ package ud4.examentest;
 import java.util.Arrays;
 
 public class Examen {
-    private String titulo;
-    private Pregunta[] preguntas;
+    protected String titulo;
+    protected Pregunta[] preguntas;
 
     public Examen(String titulo) {
         if (titulo != null || titulo.length() != 0) {
