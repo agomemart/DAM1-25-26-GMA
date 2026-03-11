@@ -23,12 +23,7 @@ public class AppCombateGrupos {
         System.out.println("Equipo B");
         imprimirEquipo(equipoB);
 
-        Comparator<Personaje> comparadorPV = new Comparator<>() {
-            @Override
-            public int compare(Personaje o1, Personaje o2) {
-                return o1.getPv() - o2.getPv();
-            }
-        };
+        
 
         Comparator<Personaje> comparadorAgilidad = new Comparator<>() {
             @Override
@@ -43,7 +38,7 @@ public class AppCombateGrupos {
             if (i < 3) {
                 todos[i] = equipoA[i];
             } else {
-                todos[i] = equipoB[i - 3];
+                todos[i] = equipoB[i - equipoA.length];
             }
         }
 
@@ -55,9 +50,12 @@ public class AppCombateGrupos {
             Personaje pConTurno = todos[turno];
             if (pConTurno.estaVivo()) {
                 if(pertenece(pConTurno, equipoA)){
-                    
+                    System.out.println("al equipo B");
+                    atacar(pConTurno, equipoB);
+
                 } else{
-                    
+                    System.out.println("al equipo A");
+                    atacar(pConTurno, equipoA);
                 }
             }
             turno = (turno + 1) % todos.length;
@@ -65,9 +63,36 @@ public class AppCombateGrupos {
 
     }
 
+    private static void atacar(Personaje pConTurno, Personaje[] equipo) {
+        Comparator<Personaje> comparadorPV = new Comparator<>() {
+            @Override
+            public int compare(Personaje o1, Personaje o2) {
+                return o1.getPv() - o2.getPv();
+            }
+        };
+
+        Arrays.sort(equipo, comparadorPV);
+
+        for (Personaje pAtacado : equipo) {
+            if (pAtacado.estaVivo()) {
+                int danho = pConTurno.atacar(pAtacado);
+                if (danho > 0) {
+                    System.out.println(pConTurno + " ataca a " + pAtacado + "y le quita " + danho + " pv.");
+                } else {
+                    System.out.println(pAtacado + " esquiva el ataque de " + pConTurno);
+                }
+                return;
+            }
+        }
+    }
+
     private static boolean pertenece(Personaje pConTurno, Personaje[] equipo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pertenece'");
+        for (Personaje personaje : equipo) {
+            if (pConTurno.equals(personaje)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static boolean alguienVive(Personaje[] equipo) {
@@ -80,7 +105,8 @@ public class AppCombateGrupos {
     }
 
     private static void imprimirEquipo(Personaje[] equipo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'imprimirEquipo'");
+        for (Personaje personaje : equipo) {
+            System.out.println(personaje);
+        }
     }
 }
