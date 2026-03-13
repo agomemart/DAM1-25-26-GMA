@@ -83,11 +83,30 @@ public class Lista {
         return elementos.length;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Lista other = (Lista) obj;
+        if (!Arrays.equals(elementos, other.elementos))
+            return false;
+        return true;
+    }
+
     public static void main(String[] args) {
         Lista lista = new Lista();
         lista.add(5);
         lista.add(7);
         lista.add(3);
-        System.out.println(lista);
+
+        Lista lista2 = new Lista();
+        lista.add(5);
+        lista.add(7);
+        lista.add(3);
+        System.out.println(lista.equals(lista2));
     }
 }
