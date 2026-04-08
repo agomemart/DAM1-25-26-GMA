@@ -20,8 +20,8 @@ public class E1210 {
         Set<Integer> conjunto = new LinkedHashSet<>(lista);
         System.out.println(conjunto);
 
-        Set<Integer> repetidos = new LinkedHashSet<>(lista);
-        Set<Integer> noRepetidos = new LinkedHashSet<>(lista);
+        Set<Integer> repetidos = new LinkedHashSet<>();
+        Set<Integer> noRepetidos = new LinkedHashSet<>();
         for (Integer n : conjunto) {
             if (lista.indexOf(n) == lista.lastIndexOf(n)) {
                 noRepetidos.add(n);
