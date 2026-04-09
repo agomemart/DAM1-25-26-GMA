@@ -1,28 +1,39 @@
 package ud5;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashSet;
-import java.util.Random;
+import java.util.List;
 import java.util.Set;
 
 public class Sorteo<T> {
-    Set<T> sorteo = new LinkedHashSet<>();
-    Set<T> premiados(int numeros) {
-        Set<T> res = new LinkedHashSet<>();
-        Random rnd = new Random();
+    Set<T> elementos;
 
-        int contador = 0;
-        while (numeros <= contador) {
-            //res.add(rnd.nextInt(50 + 1));
-            contador++;
-        }
-        
+    public Sorteo() {
+        this.elementos = new LinkedHashSet<>();
+    }
 
-        return res;
-        
+    public Sorteo(Collection<T> coleccion) {
+        this.elementos = new LinkedHashSet<>(coleccion);
     }
 
     public boolean add(T elemento) {
-        sorteo.add(elemento);
-        return true;
+        return elementos.add(elemento);
     }
+
+    public Set<T> premiados(int numPremiados) {
+        List<T> listaAux = new ArrayList<>(elementos);
+        Collections.shuffle(listaAux);
+
+        Set<T> res = new LinkedHashSet<>();
+        res.addAll(listaAux.subList(0, Math.min(numPremiados, elementos.size())));
+
+        return res;
+    }
+
+    public boolean addAll(Collection<T> coleccion) {
+        return elementos.addAll(coleccion);
+    }
+
 }
