@@ -1,6 +1,7 @@
 package ud5;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
@@ -36,6 +37,14 @@ public class Cliente implements Comparable<Cliente> {
     @Override
     public String toString() {
         return "DNI: " + dni + " Nombre: " + nombre + " Edad: " + edad();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getEdad() {
+        return Period.between(fechaNacimiento, LocalDate.now()).getYears();
     }
 
     @Override
