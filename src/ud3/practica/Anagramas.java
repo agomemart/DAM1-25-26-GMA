@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Anagramas {
     public static boolean sonAnagramas(String palabra1, String palabra2) {
-        if (palabra1 == null || palabra2 == null || palabra1.isEmpty() || palabra2.isEmpty()) {
+        if (palabra1 == null || palabra2 == null || palabra1.isBlank() || palabra2.isBlank()) {
             return false;
         }
 
@@ -12,15 +12,15 @@ public class Anagramas {
             return false;
         }
 
-        char[] arrayPalabra1 = palabra1.toLowerCase().toCharArray();
-        char[] arrayPalabra2 = palabra2.toLowerCase().toCharArray();
-        Arrays.sort(arrayPalabra1);
-        Arrays.sort(arrayPalabra2);
+        char[] letrasP1 = palabra1.trim().toLowerCase().toCharArray();
+        char[] letrasP2 = palabra2.trim().toLowerCase().toCharArray();
+        Arrays.sort(letrasP1);
+        Arrays.sort(letrasP2);
 
-        if (Arrays.equals(arrayPalabra1, arrayPalabra2)) {
-            return true;
-        }
+        return Arrays.equals(letrasP1, letrasP2);
+    }
 
-        return false;
+    public static void main(String[] args) {
+        System.out.println(sonAnagramas("amor", "roma"));
     }
 }
