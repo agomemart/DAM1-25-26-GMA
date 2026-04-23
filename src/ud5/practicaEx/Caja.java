@@ -1,18 +1,30 @@
 package ud5.practicaEx;
 
 public class Caja<T> {
-    T valor;
+    private T contenido;
 
-    public void guardar(T v) {
-        valor = v;
+    public Caja(T contenido) {
+        this.contenido = contenido;
+    }
+
+    public boolean guardar(T elemento) {
+        if (elemento == null) {
+            return false;
+        }
+
+        this.contenido = elemento;
+
+        return true;
     }
 
     public T obtener() {
-        return valor;
+        return contenido;
     }
 
     @Override
     public String toString() {
-        return String.valueOf(valor);
+        return contenido.toString();
     }
+
+    
 }
