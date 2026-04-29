@@ -2,8 +2,6 @@ package ud4.examentest;
 
 import java.util.Arrays;
 
-import ud3.arrays.Util;
-
 public class Pregunta {
     String enunciado;
     String[] respuestas;

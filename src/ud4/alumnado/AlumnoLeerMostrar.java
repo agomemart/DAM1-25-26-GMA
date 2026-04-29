@@ -1,8 +1,6 @@
 package ud4.alumnado;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
 public class AlumnoLeerMostrar {
     public static void main(String[] args) {

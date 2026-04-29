@@ -6,6 +6,7 @@ package ud3.matrices;
 import java.util.Scanner;
 
 public class Ajedrez {
+    static Scanner sc = new Scanner(System.in);
     public static void mostrarTableroColoresCasillas(char[][] t) {
         for (int i = 0; i < t.length; i++) {
             for (int j = 0; j < t[i].length; j++) {
@@ -59,7 +60,6 @@ public class Ajedrez {
     }
 
     public static int[] leerMovimiento() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Movimiento? Ejemplo \"e2 e4\": ");
         String entrada = sc.nextLine();
         char columnaOrigen = entrada.charAt(0); // e columnaOrigen
@@ -152,6 +152,7 @@ public class Ajedrez {
         // Mensaje final: ganador/a o tablas
 
         System.out.println("Fin de la partida!");
+        sc.close();
 
     }
 }
