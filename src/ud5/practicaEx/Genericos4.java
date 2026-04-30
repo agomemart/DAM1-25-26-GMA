@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Genericos4 {
     static <T> List<T> filtrarMenores(Collection<T> col, T elem, Comparator<T> comp) {
@@ -142,5 +143,74 @@ public class Genericos4 {
         res.addAll(aux);
 
         return res;
+    }
+
+    static <T, R> List<R> filtrarYTransformar(Collection<T> col, Predicate<T> filtro, Function<T, R> transformador) {
+        if (col == null || col.isEmpty() || filtro == null || transformador == null) {
+            return new ArrayList<>();
+        }
+
+        List<R> elementosTransformados = new ArrayList<>();
+        for (T e : col) {
+            if (filtro.test(e)) {
+                elementosTransformados.add(transformador.apply(e));
+            }
+        }
+
+        return elementosTransformados;
+    }
+
+    static <T> boolean todosCumplen(Collection<T> col, Predicate<T> p) {
+        if (col == null || col.isEmpty()) {
+            return false;
+        }
+
+        for (T e : col) {
+            if (!p.test(e)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    static <T> T buscar(Collection<T> col, Predicate<T> p) {
+        if (col == null || col.isEmpty()) {
+            return null;
+        }
+
+        for (T e : col) {
+            if (p.test(e)) {
+                return e;
+            }
+        }
+
+        return null;
+    }
+
+    static <K, V> List<Map.Entry<K,V>> ordenarPorValor(Map<K,V> mapa, Comparator<V> comp) {
+        if (mapa == null || mapa.isEmpty() || comp == null) {
+            return new ArrayList<>();
+        }
+
+        List<Map.Entry<K, V>> lista = new ArrayList<>(mapa.entrySet());
+        lista.sort((e1, e2) -> comp.compare(e1.getValue(), e2.getValue()));
+
+        return lista;
+    }
+
+    static <T> Collection<T> filtrarRango(Collection<T> col, T min, T max, Comparator<T> comp) {
+        if (col == null || col.isEmpty() || comp == null  || min == null || max == null) {
+            return new ArrayList<>();
+        }
+
+        Collection<T> filtrados = new ArrayList<>();
+        for (T e : col) {
+            if (comp.compare(e, min) >= 0 && comp.compare(e, max) <= 0) {
+                filtrados.add(e);
+            }
+        }
+
+        return filtrados;
     }
 }
