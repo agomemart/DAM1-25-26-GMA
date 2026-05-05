@@ -17,8 +17,10 @@ public class AppJavaFx extends Application{
         
         btn = new Button("Púlsame");
         btn.setOnAction(e -> respuestaButton());
-        Scene scene = new Scene(btn);
+        Scene scene = new Scene(btn, 300, 200);
         stage.setScene(scene);
+        stage.setTitle("Botón para pulsar y contar");
+        stage.setResizable(false);
         stage.show();
     }
 

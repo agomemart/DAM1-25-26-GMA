@@ -80,7 +80,7 @@ public class Feitizo implements Comparable<Feitizo>{
 
     @Override
     public String toString() {
-        return nome + " (" + dificultade + ")";
+        return nome + "(" + dificultade + ")";
     }
 
     public static void main(String[] args) {
