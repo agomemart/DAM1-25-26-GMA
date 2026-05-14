@@ -1,5 +1,9 @@
 package ud6.empresa;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -7,7 +11,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 
 public class ControladorEmpresa implements Initializable{
 
@@ -22,6 +28,9 @@ public class ControladorEmpresa implements Initializable{
 
     @FXML
     private TextField txtWeb;
+
+    @FXML
+    private MenuBar menu;
 
     @FXML
     void actualizar(ActionEvent event) {
@@ -45,6 +54,31 @@ public class ControladorEmpresa implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lstEmpresas.getItems().addAll(AppEmpresas.empresas);
+    }
+
+    @FXML
+    void abrir(ActionEvent event) {
+
+    }
+
+    @FXML
+    void guardar(ActionEvent event) {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Guardar");
+        chooser.setInitialDirectory(null);
+        chooser.setInitialFileName("empresas.txt");
+
+        File file = chooser.showSaveDialog(null);
+
+        try (BufferedWriter out = new BufferedWriter(new FileWriter("empresas.txt"))) {
+            for (Empresa e : lstEmpresas.getItems()) {
+                out.write(e.toString());
+                out.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error de I/O");
+        }
+        
     }
 
 }
