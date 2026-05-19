@@ -13,7 +13,7 @@ public class LogApache {
     public static void main(String[] args) {
         try {
             BufferedReader in = new BufferedReader(new FileReader("bacharelato_access.log"));
-            Map<String, Integer> direccionesIp = new HashMap<>();
+            Map<String, Integer> accesosPorIp = new HashMap<>();
             int accesosIncorrectos = 0;
             int totalAccesos = 0;
 
@@ -22,14 +22,13 @@ public class LogApache {
             while ((linea = in.readLine()) != null) {
                 totalAccesos++;
 
-                linea = in.readLine();
                 int posPrimerEspacio = linea.indexOf(" ");
                 String ip = linea.substring(0, posPrimerEspacio);
                 int pos404 = linea.indexOf("404");
-                if (direccionesIp.containsKey(ip)) {
-                    direccionesIp.put(ip, direccionesIp.get(ip) + 1);
+                if (accesosPorIp.containsKey(ip)) {
+                    accesosPorIp.put(ip, accesosPorIp.get(ip) + 1);
                 } else {
-                    direccionesIp.put(ip, 1);
+                    accesosPorIp.put(ip, 1);
                 }
                 
                 if (pos404 != -1) {
@@ -38,7 +37,7 @@ public class LogApache {
             }
             in.close();
 
-            List<Map.Entry<String, Integer>> entradas = new ArrayList<>(direccionesIp.entrySet());
+            List<Map.Entry<String, Integer>> entradas = new ArrayList<>(accesosPorIp.entrySet());
             entradas.sort((e1, e2) -> e2.getValue() - e1.getValue());
             
             System.out.println("Nº total de accesos al servidor: " + totalAccesos);
