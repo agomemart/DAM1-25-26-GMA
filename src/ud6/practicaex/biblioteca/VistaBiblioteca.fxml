@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ud6.practicaex.biblioteca.ControladorBiblioteca">
+   <children>
+      <Label layoutX="33.0" layoutY="46.0" text="Nombre" />
+      <Label layoutX="33.0" layoutY="79.0" text="Titulo" />
+      <Label layoutX="33.0" layoutY="117.0" text="Fecha préstamo" />
+      <Label layoutX="31.0" layoutY="150.0" text="Dias préstamo" />
+      <TextField fx:id="txtNombre" layoutX="91.0" layoutY="42.0" />
+      <TextField fx:id="txtTitulo" layoutX="91.0" layoutY="75.0" />
+      <DatePicker fx:id="dpFecha" layoutX="126.0" layoutY="113.0" />
+      <TextField fx:id="txtDiasPrestamo" layoutX="117.0" layoutY="146.0" />
+      <ListView fx:id="lstVista" layoutX="314.0" layoutY="37.0" prefHeight="349.0" prefWidth="272.0" />
+      <Button layoutX="30.0" layoutY="188.0" mnemonicParsing="false" onAction="#anadir" text="Añadir" />
+      <MenuBar layoutX="3.0" layoutY="2.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Archivo">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#generarNuevo" text="Nuevo" />
+                  <MenuItem mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrir" text="Abrir" />
+              <MenuItem mnemonicParsing="false" onAction="#salir" text="Salir" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ud6.practicaex.agenda.ControladorAgenda">
+   <children>
+      <Label layoutX="265.0" layoutY="28.0" text="AGENDA">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="68.0" text="Nombre" />
+      <Label layoutX="24.0" layoutY="105.0" text="Teléfono" />
+      <Label layoutX="24.0" layoutY="143.0" text="Email" />
+      <ListView fx:id="lstAgenda" layoutX="252.0" layoutY="64.0" prefHeight="321.0" prefWidth="333.0" />
+      <TextField fx:id="txtNombre" layoutX="82.0" layoutY="64.0" />
+      <TextField fx:id="txtTelefono" layoutX="82.0" layoutY="101.0" />
+      <TextField fx:id="txtEmail" layoutX="82.0" layoutY="139.0" />
+      <Button layoutX="82.0" layoutY="188.0" mnemonicParsing="false" onAction="#add" text="Añadir" />
+      <MenuBar layoutX="2.0" layoutY="2.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Archivo">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#generarNuevo" text="Nuevo" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrir" text="Abrir" />
+                  <MenuItem mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+              <MenuItem mnemonicParsing="false" onAction="#cerrar" text="Cerrar" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label fx:id="mensajeError" layoutX="32.0" layoutY="225.0" prefHeight="17.0" prefWidth="206.0" />
+   </children>
+</AnchorPane>
